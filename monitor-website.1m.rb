@@ -53,9 +53,13 @@ Setting.websites.each do |url|
   url = URI.parse(url)
   http = Net::HTTP.new(url.host, url.port)
   http.use_ssl = url.scheme == 'https'
-  response = http.get(url)
-  code = response.code
-  websites.push({code: code, url: url})
+  begin
+    response = http.get(url)
+    code = response.code
+    websites.push({code: code, url: url})
+  rescue SocketError => se
+    websites.push({code: "Wrong url!", url: url})
+  end
   # For debug decomment this line:
   # puts "#{url.host} - #{code}| href=#{url} color=##{code_color code}"
 end

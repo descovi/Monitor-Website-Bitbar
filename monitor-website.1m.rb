@@ -7,6 +7,7 @@
 # <bitbar.desc>Monitoring in real time for websites.</bitbar.desc>
 # <bitbar.dependencies>ruby</bitbar.dependencies>
 # <bitbar.version>1.0</bitbar.version>
+# <bitbar.image>https://raw.githubusercontent.com/simonini/Monitor-Website-Bitbar/master/monitor-website-image.png</bitbar.image>
 #
 # Monitor WEBSITE
 #

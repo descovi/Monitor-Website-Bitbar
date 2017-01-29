@@ -57,7 +57,8 @@ Setting.websites.each do |url|
   response = http.get(url)
   code = response.code
   status.push({code: code, url: url})
-  #puts "#{url.host} - #{code}| href=#{url} color=##{code_color code}"
+  # For debug decomment this line:
+  # puts "#{url.host} - #{code}| href=#{url} color=##{code_color code}"
 end
 
 puts get_status(status)

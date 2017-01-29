@@ -4,6 +4,7 @@
 # <bitbar.title>Monitor HTTP</bitbar.title>
 # <bitbar.author>simonini</bitbar.author>
 # <bitbar.author.github>simonini</bitbar.author.github>
+# <bitbar.desc>Monitoring in real time for websites.</bitbar.desc>
 # <bitbar.dependencies>ruby</bitbar.dependencies>
 # <bitbar.version>1.0</bitbar.version>
 #

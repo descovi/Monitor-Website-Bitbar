@@ -16,7 +16,7 @@ require "uri"
 
 class Setting
   def self.websites 
-    ['https://yourwebsite.it']
+    ['https://yourwebsite1.it', 'http://yourwebsite2.com']
   end
   def self.user
     'ale'

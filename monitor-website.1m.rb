@@ -8,7 +8,7 @@
 # <bitbar.dependencies>ruby</bitbar.dependencies>
 # <bitbar.version>1.0</bitbar.version>
 # <bitbar.image>https://raw.githubusercontent.com/simonini/Monitor-Website-Bitbar/master/monitor-website-image.png</bitbar.image>
-#
+# <bitbar.abouturl>https://github.com/simonini/Monitor-Website-Bitbar</bitbar>
 # Monitor WEBSITE
 #
 

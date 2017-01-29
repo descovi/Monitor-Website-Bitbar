@@ -35,33 +35,33 @@ def code_color code
   end
 end
 
-def get_status status
-  status.each do |stato|
-    code = stato[:code]
+def get_status websites
+  websites.each do |website|
+    code = website[:code]
     color = "color=##{code_color code}"
     # 401 sta per non autorizzato ma vuol dire che comunque è online
     if code != "200" and code != "401" 
       
       `afplay "/Users/#{Setting.user}/bitbar/monitor/alarm.mp3"`
       
-      return "#{stato[:url]} #{stato[:code]} | #{color} | #{stato[:url]} | href=#{stato[:url]} | #{color}"
+      return "#{website[:url]} #{website[:code]} | #{color} | #{website[:url]} | href=#{website[:url]} | #{color}"
     end
   end
   return "OK | color=##{code_color 200}"
 end
 
-status = []
+websites = []
 Setting.websites.each do |url|
   url = URI.parse(url)
   http = Net::HTTP.new(url.host, url.port)
   http.use_ssl = url.scheme == 'https'
   response = http.get(url)
   code = response.code
-  status.push({code: code, url: url})
+  websites.push({code: code, url: url})
   # For debug decomment this line:
   # puts "#{url.host} - #{code}| href=#{url} color=##{code_color code}"
 end
 
-puts get_status(status)
+puts get_status(websites)
 
 

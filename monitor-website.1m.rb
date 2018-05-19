@@ -19,19 +19,13 @@ require_relative './lib/setting'
 require_relative './lib/site'
 require_relative './lib/monitor'
 
-
 websites = []
 
 Setting.websites.each do |url|
   url_parsed = URI.parse(url)
   site = Site.new(url: url)
-  result = site.call()
-  websites.push(result)
-  #p result
-  # For debug decomment this line:
-  puts "#{url_parsed.host} - #{result[:code]}| href=#{url_parsed} color=##{Setting.code_color result[:code]}"
+  websites.push(site.call())
 end
-#p "websites: #{websites}"
 
 monitor = Monitor.new(websites: websites)
 puts monitor.get_status()

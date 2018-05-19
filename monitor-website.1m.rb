@@ -22,7 +22,6 @@ require_relative './lib/monitor'
 websites = []
 
 Setting.websites.each do |url|
-  url_parsed = URI.parse(url)
   site = Site.new(url: url)
   websites.push(site.call())
 end

@@ -9,7 +9,7 @@ class MonitorTest < Test::Unit::TestCase
     monitor = Monitor.new(websites: websites)
     result = monitor.get_status()
     expected = [
-      "OK - http://example.com | color=#00cc00",
+      "200 - http://example.com | color=#00cc00",
       "500 - http://gazzetta.com | ff0000 | http://gazzetta.com | href=http://gazzetta.com | color=#ff0000"
     ]
 

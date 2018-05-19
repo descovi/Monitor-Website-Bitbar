@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+
 # -*- coding: utf-8 -*-
 
 # <bitbar.title>Monitor HTTP</bitbar.title>
@@ -12,58 +13,25 @@
 # Monitor WEBSITE
 #
 
+require 'net/http'
+require 'uri'
+require_relative './lib/setting'
+require_relative './lib/site'
+require_relative './lib/monitor'
 
-require "net/http"
-require "uri"
-
-class Setting
-  def self.websites 
-    ['https://yourwebsite1.it', 'http://yourwebsite2.com']
-  end
-  def self.user
-    'ale'
-  end
-end
-
-
-
-def code_color code
-  if code.to_i == 200
-    return "00cc00"
-  else
-    return "ff0000"
-  end
-end
-
-def get_status websites
-  websites.each do |website|
-    code = website[:code]
-    color = "color=##{code_color code}"
-    # 401 sta per non autorizzato ma vuol dire che comunque è online
-    if code != "200" and code != "401"
-      `afplay "/Users/#{Setting.user}/bitbar/sound/alarm.mp3"`
-      return "#{website[:url]} #{website[:code]} | #{color} | #{website[:url]} | href=#{website[:url]} | #{color}"
-    end
-  end
-  return "OK | color=##{code_color 200}"
-end
 
 websites = []
+
 Setting.websites.each do |url|
-  url = URI.parse(url)
-  http = Net::HTTP.new(url.host, url.port)
-  http.use_ssl = url.scheme == 'https'
-  begin
-    response = http.get(url)
-    code = response.code
-    websites.push({code: code, url: url})
-  rescue SocketError => se
-    websites.push({code: "Wrong url!", url: url})
-  end
+  url_parsed = URI.parse(url)
+  site = Site.new(url: url)
+  result = site.call()
+  websites.push(result)
+  #p result
   # For debug decomment this line:
-  # puts "#{url.host} - #{code}| href=#{url} color=##{code_color code}"
+  puts "#{url_parsed.host} - #{result[:code]}| href=#{url_parsed} color=##{Setting.code_color result[:code]}"
 end
+#p "websites: #{websites}"
 
-puts get_status(websites)
-
-
+monitor = Monitor.new(websites: websites)
+puts monitor.get_status()

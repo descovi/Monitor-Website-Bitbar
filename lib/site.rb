@@ -29,8 +29,7 @@ class Site
       end
       return {code: response.code, url: @url}
     rescue *HTTP_ERRORS => error
-      url = "./sound/alarm.mp3"
-      system("afplay '#{url}'")
+      `afplay "#{Dir.pwd}/sound/alarm.mp3"`
       return {code: "Wrong url!", url: @url}
     end
   end

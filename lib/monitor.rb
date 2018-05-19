@@ -13,7 +13,7 @@ class Monitor
       if code == "200" || code == "401"
         "#{code} - #{url} | color=##{Setting.code_color 200}"
       else
-        #{}`afplay "./sound/alarm.mp3"`
+        `afplay "#{Dir.pwd}/sound/alarm.mp3"`
         "#{code} - #{url} | #{Setting.code_color 500} | #{url} | href=#{url} | #{color}"
       end
     end

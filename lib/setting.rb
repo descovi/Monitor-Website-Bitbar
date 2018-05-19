@@ -6,11 +6,7 @@ class Setting
       'http://placeof.it/it/welcome/intro'
     ]
   end
-
-  def self.user
-    'ale'
-  end
-
+  
   def self.code_color code
     if code.to_i == 200
       return "00cc00"
